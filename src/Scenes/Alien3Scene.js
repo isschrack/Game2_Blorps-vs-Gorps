@@ -10,18 +10,18 @@ class alien3 extends Phaser.Scene {
 
         // Load images for the player, enemy, and projectile
         this.load.image("alien_standing", "assets/Alien sprites/alienBlue_stand.png");
-        this.load.image("projectile", "kenney_alien-ufo-pack/PNG/laserBreen1.png");
+        this.load.image("projectile", "kenney_alien-ufo-pack/PNG/laserBlue1.png");
         this.load.image('enemy', "assets/Enemy sprites/slimeGreen.png");
         this.load.image('health', "assets/Alien sprites/alienBlue_badge1.png");
         this.load.image('enemy2', "assets/Enemy sprites/spider_walk1.png");
         this.load.image('enemy2_hit', "assets/Enemy sprites/spider_hit.png");
         this.load.image("alien_hurt", "assets/Alien sprites/alienBlue_hurt.png");
-        this.load.image('gorp_health', 'assets/Alien sprites/aliengreen_badge2.png');
+        this.load.image('gorp_health', 'assets/Alien sprites/alienGreen_badge2.png');
 
-        this.load.setPath('assets/kenney_alien-ufo-pack/PNG/');
+        this.load.setPath('kenney_alien-ufo-pack/PNG/');
         this.load.image('gorp', 'shipGreen_manned.png');
         this.load.image('ship_hit', 'laserGreen_burst.png');
-        this.load.image('gorp_laser', '/laserGreen1.png');
+        this.load.image('gorp_laser', 'laserGreen1.png');
 
 
         // Load images for the background

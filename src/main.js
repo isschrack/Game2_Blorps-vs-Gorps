@@ -29,10 +29,10 @@ let config = {
         }
     },
     scene: [
-        start,
+/*         start,
         controls, 
         alien1,
-        alien2,
+        alien2, */
         alien3,
         end
     ]
