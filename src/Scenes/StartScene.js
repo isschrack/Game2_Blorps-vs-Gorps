@@ -23,10 +23,10 @@ class start extends Phaser.Scene {
         document.getElementById('description').innerHTML = "<h2>Welcome to the game! Click the button to learn the controls.<h2>";
 
         let credits = "<h3>Game by Izzy Schrack<h3>" + 
-                      "Used Packs:<br>" + 
-                      "https://kenney.nl/assets/alien-ufo-pack<br>" + 
-                      "https://kenney.nl/assets/platformer-art-extended-enemies<br>" + 
-                      "https://kenney.nl/assets/onscreen-controls<br>";
+                      "Used Packs: " + 
+                      "https://kenney.nl/assets/alien-ufo-pack " + 
+                      "https://kenney.nl/assets/platformer-art-extended-enemies " + 
+                      "https://kenney.nl/assets/onscreen-controls ";
         document.getElementById('credits').innerHTML = credits;
     }
 

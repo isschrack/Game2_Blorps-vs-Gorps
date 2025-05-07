@@ -18,7 +18,7 @@ class alien2 extends Phaser.Scene {
         this.load.image("alien_hurt", "assets/Alien sprites/alienBlue_hurt.png");
 
 
-        // Load images for the background
+        // Ignore
         this.load.setPath('assets/');
         this.load.image("ground_tiles", "scifi_spritesheet.png");
         this.load.image("block_tiles", "sand_packed.png");
@@ -30,24 +30,12 @@ class alien2 extends Phaser.Scene {
 
         let my = this.my;
 
-         // Create the tilemap and layers
+         // Ignore
         this.map = this.add.tilemap("map1", 16, 16, 50, 37);
-        console.log("Tilemap loaded:", this.map);
-        
         this.tileset = this.map.addTilesetImage("sand-blocks", "block_tiles");
-        console.log("Tileset 1 loaded:", this.tileset);
-
         this.tileset2 = this.map.addTilesetImage("landscape_tiles", "ground_tiles");
-        console.log("Tileset 2 loaded:", this.tileset2);
-        
         let blockLayer = this.map.createLayer('barrier', this.tileset, 0, 0);
-        console.log("Block layer created:", blockLayer);
-
-        // Make blockLayer invisible
         blockLayer.setVisible(false);
-
-/*         let groundLayer = this.map.createLayer('ground', this.tileset2, 0, 0);
-        console.log("Ground layer created:", groundLayer); */
 
         // put alien on the screen towards left side center
         my.sprite = this.physics.add.sprite(this.bodyX, this.bodyY, 'alien_standing').setOrigin(0.5, 0.5).setScale(2);
