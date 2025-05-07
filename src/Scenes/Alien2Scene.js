@@ -113,6 +113,9 @@ class alien2 extends Phaser.Scene {
                 console.log('Spider went off-screen and is counted as killed.');
             }
         });
+
+        // Display score on the bottom left of the screen
+        my.scoreText = this.add.text(10, 550, `Score: ${this.registry.get('score')}`, { fontSize: '20px', fill: '#fff' }).setScrollFactor(0);
     }
 
     update() {
@@ -141,6 +144,7 @@ class alien2 extends Phaser.Scene {
 
             // Add a delay before switching to Alien3Scene
             this.time.delayedCall(3000, () => { // 3-second delay
+                this.registry.set('score', this.registry.get('score')); // Save score to registry
                 this.scene.start('alien3'); // Switch to Alien3Scene
             });
         }
@@ -215,14 +219,19 @@ class alien2 extends Phaser.Scene {
                 enemy.setTexture('enemy2'); // Revert back to the original texture
             });
 
-            // Destroy the spider if health reaches 0
+            // Award points only if the spider is killed
             if (enemy.health <= 0) {
+                this.registry.set('score', this.registry.get('score') + 5); // Spider is worth 5 points
                 enemy.disableBody(true, true); // Makes enemy disappear
             }
         } else {
-            // For other enemies, destroy them immediately
+            // For other enemies, award points and destroy them immediately
+            this.registry.set('score', this.registry.get('score') + 1); // Slime is worth 1 point
             enemy.disableBody(true, true);
         }
+
+        // Update score display
+        this.my.scoreText.setText(`Score: ${this.registry.get('score')}`);
     }
 
     shootProjectile() {

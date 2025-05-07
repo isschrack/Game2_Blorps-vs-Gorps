@@ -155,6 +155,9 @@ class alien3 extends Phaser.Scene {
 
         // Add a group to hold gorp health images
         my.gorpHealthImages = [];
+
+        // Display score on the bottom left of the screen
+        my.scoreText = this.add.text(10, 550, `Score: ${this.registry.get('score')}`, { fontSize: '20px', fill: '#fff' }).setScrollFactor(0);
     }
 
     update() {
@@ -245,8 +248,24 @@ class alien3 extends Phaser.Scene {
     hitEnemy(projectile, enemy) {
         projectile.destroy(); // Remove the projectile
 
-        // Check if the enemy is the gorp
-        if (enemy.texture.key === 'gorp') {
+        // Check if the enemy is a spider
+        if (enemy.texture.key === 'enemy2') {
+            if (!enemy.health) enemy.health = 2; // Initialize health if not set
+            enemy.health -= 1;
+
+            // Flash the enemy2_hit image
+            enemy.setTexture('enemy2_hit');
+            this.time.delayedCall(200, () => {
+                enemy.setTexture('enemy2'); // Revert back to the original texture
+            });
+
+            // Award points only if the spider is killed
+            if (enemy.health <= 0) {
+                this.registry.set('score', this.registry.get('score') + 5); // Spider is worth 5 points
+                enemy.disableBody(true, true); // Makes enemy disappear
+            }
+        } else if (enemy.texture.key === 'gorp') {
+            // Handle gorp-specific logic
             if (!enemy.health) enemy.health = 20; // Initialize health if not set
             enemy.health -= 1;
 
@@ -264,8 +283,9 @@ class alien3 extends Phaser.Scene {
                 hitEffect.destroy(); // Remove the hit effect after 200ms
             });
 
-            // Destroy the gorp if health reaches 0
+            // Award points and destroy the gorp if health reaches 0
             if (enemy.health <= 0) {
+                this.registry.set('score', this.registry.get('score') + 10); // Gorp is worth 10 points
                 enemy.disableBody(true, true); // Makes gorp disappear
                 console.log('Gorp defeated!');
 
@@ -275,7 +295,14 @@ class alien3 extends Phaser.Scene {
                     this.scene.start('end'); // Switch to end
                 });
             }
+        } else {
+            // For other enemies, award points and destroy them immediately
+            this.registry.set('score', this.registry.get('score') + 1); // Slime is worth 1 point
+            enemy.disableBody(true, true);
         }
+
+        // Update score display
+        this.my.scoreText.setText(`Score: ${this.registry.get('score')}`);
     }
 
     shootProjectile() {

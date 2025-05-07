@@ -12,6 +12,12 @@ class end extends Phaser.Scene {
         // Display "Congrats You Won!" message
         this.add.text(400, 200, 'Congrats You Won!', { fontSize: '32px', fill: '#fff' }).setOrigin(0.5);
 
+        // Retrieve the score from the registry
+        const score = this.registry.get('score') || 0;
+
+        // Display the final score
+        this.add.text(400, 250, `Your Score: ${score}`, { fontSize: '24px', fill: '#fff' }).setOrigin(0.5);
+
         // Display the alien sprite
         this.add.image(400, 300, 'alienBlueJump').setScale(0.5);
 

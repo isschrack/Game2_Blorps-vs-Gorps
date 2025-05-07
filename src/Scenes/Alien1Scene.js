@@ -88,6 +88,14 @@ class alien1 extends Phaser.Scene {
         // Add a cooldown flag for shooting
         my.canShoot = true;
 
+        // Initialize score if not already set
+        if (!this.registry.has('score')) {
+            this.registry.set('score', 0);
+        }
+
+        // Display score on the bottom left of the screen
+        my.scoreText = this.add.text(10, 550, `Score: ${this.registry.get('score')}`, { fontSize: '20px', fill: '#fff' }).setScrollFactor(0);
+
         document.getElementById('description').innerHTML = '<h2>Level 1: Wave 1</h2>';
     }
 
@@ -108,6 +116,7 @@ class alien1 extends Phaser.Scene {
 
         // Check if all enemies are killed
         if (this.my.enemies.countActive(true) === 0 && this.my.waveCount >= 5) {
+            this.registry.set('score', this.registry.get('score')); // Save score to registry
             console.log('All enemies defeated. Switching to Alien2Scene.');
             document.getElementById('description').innerHTML = '<h2>Level 1 Complete!</h2>';
 
@@ -145,7 +154,31 @@ class alien1 extends Phaser.Scene {
 
     hitEnemy(projectile, enemy) {
         projectile.destroy(); // Remove the projectile
-        enemy.disableBody(true, true); // Makes enemy disappear
+
+        // Check if the enemy is a spider
+        if (enemy.texture.key === 'enemy2') {
+            if (!enemy.health) enemy.health = 2; // Initialize health if not set
+            enemy.health -= 1;
+
+            // Flash the enemy2_hit image
+            enemy.setTexture('enemy2_hit');
+            this.time.delayedCall(200, () => {
+                enemy.setTexture('enemy2'); // Revert back to the original texture
+            });
+
+            // Award points only if the spider is killed
+            if (enemy.health <= 0) {
+                this.registry.set('score', this.registry.get('score') + 5); // Spider is worth 5 points
+                enemy.disableBody(true, true); // Makes enemy disappear
+            }
+        } else {
+            // For other enemies, award points and destroy them immediately
+            this.registry.set('score', this.registry.get('score') + 1); // Slime is worth 1 point
+            enemy.disableBody(true, true);
+        }
+
+        // Update score display
+        this.my.scoreText.setText(`Score: ${this.registry.get('score')}`);
     }
 
     shootProjectile() {
