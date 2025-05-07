@@ -20,7 +20,7 @@ class start extends Phaser.Scene {
             this.scene.start('controls'); // Navigate to the controls page
         });
 
-        document.getElementById('description').innerHTML = "Welcome to the game! Click the button to learn the controls.";
+        document.getElementById('description').innerHTML = "<h2>Welcome to the game! Click the button to learn the controls.<h2>";
     }
 
     update() {

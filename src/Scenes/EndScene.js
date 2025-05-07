@@ -21,7 +21,7 @@ class end extends Phaser.Scene {
             this.scene.start('start');
         });
 
-        document.getElementById('description').innerHTML = "Congrats! You have completed the game. Click the button to return to the start screen.";
+        document.getElementById('description').innerHTML = "<h2>Congrats! You have completed the game. Click the button to return to the start screen.<h2>";
     }
 
     update() {

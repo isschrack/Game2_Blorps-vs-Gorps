@@ -23,7 +23,7 @@ class controls extends Phaser.Scene {
             this.scene.start('alien1'); // Navigate back to the start scene
         });
 
-        document.getElementById('description').innerHTML = "Learn the controls and game mechanics. Click the button to start the game.";
+        document.getElementById('description').innerHTML = "<h2>Learn the controls and game mechanics. Click the button to start the game.<h2>";
     }
 
     update() {
