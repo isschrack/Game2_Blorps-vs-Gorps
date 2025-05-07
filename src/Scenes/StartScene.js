@@ -6,7 +6,7 @@ class start extends Phaser.Scene {
     preload() {
         // Load the background image and button assets
         this.load.image('background', 'assets/background.png');
-        this.load.image('button', 'assets/Sprites/flat-light/flatLight40.png');
+        this.load.image('button', 'assets/flatLight40.png');
     }
 
     create() {

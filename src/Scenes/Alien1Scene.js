@@ -10,7 +10,7 @@ class alien1 extends Phaser.Scene {
 
         // Load images for the player, enemy, and projectile
         this.load.image("alien_standing", "assets/Alien sprites/alienBlue_stand.png");
-        this.load.image("projectile", "assets/Enemy sprites/worm.png");
+        this.load.image("projectile", "kenney_alien-ufo-pack/PNG/laserBlue1.png");
         this.load.image('enemy', "assets/Enemy sprites/slimeGreen.png");
         this.load.image('health', "assets/Alien sprites/alienBlue_badge1.png");
         this.load.image("alien_hurt", "assets/Alien sprites/alienBlue_hurt.png");
@@ -167,6 +167,9 @@ class alien1 extends Phaser.Scene {
         const projectile = my.projectiles.create(my.sprite.x, my.sprite.y, 'projectile').setOrigin(0.5, 0.5).setScale(my.projectileScale);
         projectile.setActive(true);
         projectile.setVisible(true);
+
+        // Rotate the projectile 90 degrees
+        projectile.setAngle(90);
 
         // Set velocity to shoot straight to the right
         projectile.setVelocity(300, 0);

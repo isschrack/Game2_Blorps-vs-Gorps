@@ -4,7 +4,7 @@ class controls extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('button', 'assets/Sprites/flat-light/flatLight40.png');
+        this.load.image('button', 'assets/flatLight40.png');
     }
 
     create() {

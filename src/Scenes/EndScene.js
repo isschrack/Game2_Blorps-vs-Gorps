@@ -5,7 +5,7 @@ class end extends Phaser.Scene {
 
     preload() {
         this.load.image('alienBlueJump', 'assets/Alien sprites/alienBlue_jump.png');
-        this.load.image('button', 'assets/sprites/flat-light/flatLight43.png');
+        this.load.image('button', 'assets/flatLight43.png');
     }
 
     create() {
